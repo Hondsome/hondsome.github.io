@@ -12,10 +12,12 @@
 
 
 
-  <meta name="description" content="Hello World"/>
+  <meta name="description" content="在linux创建一个交换文件作为虚拟内存"/>
 
 
 
+
+  <meta name="keywords" content="Linux,Memory," />
 
 
 
@@ -29,19 +31,20 @@
 
 
 
-<link rel="canonical" href="http://yoursite.com/2017/06/02/hello-world/"/>
+<link rel="canonical" href="http://yoursite.com/2017/06/02/利用swap-file实现虚拟内存/"/>
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="在linux创建一个交换文件作为虚拟内存">
+<meta name="keywords" content="Linux,Memory">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2017/06/02/hello-world/index.html">
+<meta property="og:title" content="利用swap file实现虚拟内存">
+<meta property="og:url" content="http://yoursite.com/2017/06/02/利用swap-file实现虚拟内存/index.html">
 <meta property="og:site_name" content="Hondsome">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
-<meta property="og:updated_time" content="2017-06-02T03:01:32.950Z">
+<meta property="og:description" content="在linux创建一个交换文件作为虚拟内存">
+<meta property="og:updated_time" content="2017-06-02T04:33:58.134Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="利用swap file实现虚拟内存">
+<meta name="twitter:description" content="在linux创建一个交换文件作为虚拟内存">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
@@ -68,7 +71,7 @@
 
 
 
-    <title> Hello World · Hondsome </title>
+    <title> 利用swap file实现虚拟内存 · Hondsome </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -149,7 +152,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          Hello World
+          利用swap file实现虚拟内存
         
       </h1>
 
@@ -162,25 +165,23 @@
 
     
     
-  <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">Contents</h2>
-    <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
-    </div>
-  </div>
-
 
     <div class="post-content">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p> <a href="http://www.cnblogs.com/owenyang/p/4282283.html" target="_blank" rel="external">http://www.cnblogs.com/owenyang/p/4282283.html</a></p>
+<p>使用</p>
+<p>sudo swapon -s<br>查看系统是否配置了交换区域。没有的话， 便直接开始创建swap file。<br>创建一个1G的文件。</p>
+<p>sudo fallocate -l 1G /swapfile<br>使用</p>
+<p>ls -lh /swapfile<br>确认是否是自己所需要的文件大小。</p>
+<p>启用Swap文件<br>首先调整文件的权限，若该文件能被其他用户随意的读写，则会产生很大的安全隐患。</p>
+<p>sudo chmod 600 /swapfile<br>现在安全多了，可以让系统开始设置交换区域了。</p>
+<p>sudo mkswap /swapfile<br>启用该文件</p>
+<p>sudo swapon /swapfile<br>现在基本的步骤已经完成了，可以使用最初的命令验证swap file是否正确使用。</p>
+<p>sudo swapon -s</p>
+<p>Filename                    Type          Size     Used     Priority<br>/swapfile                               file          1048572     0     -1<br>交换分区已经成功设置，系统会在必要的时候使用它。</p>
+<p>注意<br>现在已经启用了swap文件，但当我们重启的时候，系统不会自动地启用该swap文件。可以通过修改fstab文件实现开机使用swap文件。<br>用root权限编辑</p>
+<p>sudo vim /etc/fstab<br>在文件的最后，需要添加一行告诉操作系统自动使用swap文件。</p>
+<p>/swapfile   none    swap    sw    0   0<br>如此再npm install 的时候，便解决了所有的问题.</p>
 
       
     </div>
@@ -200,7 +201,7 @@
     </p>
     <p class="copyright-item">
       <span>链接: </span>
-      <a href="http://yoursite.com/2017/06/02/hello-world/">http://yoursite.com/2017/06/02/hello-world/</a>
+      <a href="http://yoursite.com/2017/06/02/利用swap-file实现虚拟内存/">http://yoursite.com/2017/06/02/利用swap-file实现虚拟内存/</a>
     </p>
 
     <p class="copyright-item lincese">
@@ -236,16 +237,24 @@
     
       <footer class="post-footer">
         
+          <div class="post-tags">
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+              <a href="/tags/Memory/">Memory</a>
+            
+          </div>
+        
         
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2017/06/02/利用swap-file实现虚拟内存/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">利用swap file实现虚拟内存</span>
-        <span class="prev-text nav-mobile">Prev</span>
-      </a>
     
+      <a class="next" href="/2017/06/02/hello-world/">
+        <span class="next-text nav-default">Hello World</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
   </nav>
 
