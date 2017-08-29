@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hondsome, python, java, go, linux, algorithm " />
+  <meta name="keywords" content="linux,ssh," />
 
 
 
@@ -95,12 +95,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hondsome&#39;s Notes">
-<meta property="og:url" content="http://hondsome.cn/tags/Linux/index.html">
+<meta name="description" content="#多台电脑免密登录你的远程服务器1.首先你先安装ssh Uubuntu的是sudo apt-get install ssh ,centos 是 yum install ssh2.生成ssh所需的文件 ssh-keygen -t  rsa ；之后在~/.ssh下会产生两个文件：id_rsa #私钥id_rsa.pub #公钥 免密登录就是在你的服务器上的~/.ssh/authorized_keys">
+<meta name="keywords" content="linux,ssh">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ssh 多端电脑登录">
+<meta property="og:url" content="http://hondsome.cn/2017/08/29/ssh-多端电脑登录/index.html">
 <meta property="og:site_name" content="Hondsome&#39;s Notes">
+<meta property="og:description" content="#多台电脑免密登录你的远程服务器1.首先你先安装ssh Uubuntu的是sudo apt-get install ssh ,centos 是 yum install ssh2.生成ssh所需的文件 ssh-keygen -t  rsa ；之后在~/.ssh下会产生两个文件：id_rsa #私钥id_rsa.pub #公钥 免密登录就是在你的服务器上的~/.ssh/authorized_keys">
+<meta property="og:updated_time" content="2017-08-29T14:31:17.781Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hondsome&#39;s Notes">
+<meta name="twitter:title" content="ssh 多端电脑登录">
+<meta name="twitter:description" content="#多台电脑免密登录你的远程服务器1.首先你先安装ssh Uubuntu的是sudo apt-get install ssh ,centos 是 yum install ssh2.生成ssh所需的文件 ssh-keygen -t  rsa ；之后在~/.ssh下会产生两个文件：id_rsa #私钥id_rsa.pub #公钥 免密登录就是在你的服务器上的~/.ssh/authorized_keys">
 
 
 
@@ -130,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://hondsome.cn/tags/Linux/"/>
+  <link rel="canonical" href="http://hondsome.cn/2017/08/29/ssh-多端电脑登录/"/>
 
 
 
 
 
-  <title>标签: Linux | Hondsome's Notes</title>
+  <title>ssh 多端电脑登录 | Hondsome's Notes</title>
   
 
 
@@ -155,7 +160,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -269,54 +274,172 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>Linux<small>标签</small>
-        </h2>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hondsome.cn/2017/08/29/ssh-多端电脑登录/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hondsome">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hondsome's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/06/02/利用swap-file实现虚拟内存/" itemprop="url">
-              
-                <span itemprop="name">利用swap file实现虚拟内存</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">ssh 多端电脑登录</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-06-02T12:07:30+08:00"
-              content="2017-06-02" >
-          06-02
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-29T22:00:17+08:00">
+                2017-08-29
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>#多台电脑免密登录你的远程服务器<br>1.首先你先安装ssh Uubuntu的是sudo apt-get install ssh ,centos 是 yum install ssh<br>2.生成ssh所需的文件 ssh-keygen -t  rsa ；<br>之后在~/.ssh下会产生两个文件：<br>id_rsa #私钥<br>id_rsa.pub #公钥</p>
+<p>免密登录就是在你的服务器上的~/.ssh/authorized_keys 文件下放入你现在的需要登录电脑的id_rsa.pub公钥， 可以存放多个。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/ssh/" rel="tag"># ssh</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/02/利用swap-file实现虚拟内存/" rel="next" title="利用swap file实现虚拟内存">
+                <i class="fa fa-chevron-left"></i> 利用swap file实现虚拟内存
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -324,6 +447,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -542,6 +669,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
 
   
 
