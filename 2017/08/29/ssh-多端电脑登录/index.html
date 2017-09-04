@@ -102,7 +102,7 @@
 <meta property="og:url" content="http://hondsome.cn/2017/08/29/ssh-多端电脑登录/index.html">
 <meta property="og:site_name" content="Hondsome&#39;s Notes">
 <meta property="og:description" content="#多台电脑免密登录你的远程服务器1.首先你先安装ssh Uubuntu的是sudo apt-get install ssh ,centos 是 yum install ssh">
-<meta property="og:updated_time" content="2017-08-29T14:36:49.768Z">
+<meta property="og:updated_time" content="2017-09-01T14:41:37.143Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ssh 多端电脑登录">
 <meta name="twitter:description" content="#多台电脑免密登录你的远程服务器1.首先你先安装ssh Uubuntu的是sudo apt-get install ssh ,centos 是 yum install ssh">
@@ -176,7 +176,7 @@
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">天下事有难易乎？为之，则难者亦易矣；不为，则易者亦难矣。</h1>
+        <h1 class="site-subtitle" itemprop="description">hondsome，博客</h1>
       
   </div>
 
@@ -383,7 +383,8 @@
 
       
         <p>#多台电脑免密登录你的远程服务器<br>1.首先你先安装ssh Uubuntu的是sudo apt-get install ssh ,centos 是 yum install ssh<br><a id="more"></a><br>2.生成ssh所需的文件 ssh-keygen -t  rsa ；<br>之后在~/.ssh下会产生两个文件：<br>id_rsa #私钥<br>id_rsa.pub #公钥</p>
-<p>免密登录就是在你的服务器上的~/.ssh/authorized_keys 文件下放入你现在的需要登录电脑的id_rsa.pub公钥， 可以存放多个。</p>
+<pre><code>免密登录就是在你的服务器上的~/.ssh/authorized_keys 文件下放入你现在的需要登录电脑的id_rsa.pub公钥， 可以存放多个。
+</code></pre><p> 之后只要重启ssh就好了<br> 重启命令是：/etc/rc.d/init.d/ssh restart 或者 sevice  ssh restart</p>
 
       
     </div>
@@ -530,7 +531,7 @@
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/hondsome" target="_blank" title="GitHub">
+                <a href="https://github.com/hondsome" target="_blank" title="GitHub" rel="external nofollow" >
                   
                     <i class="fa fa-fw fa-github"></i>
                   
@@ -581,11 +582,11 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动</div>
 
   <span class="post-meta-divider">|</span>
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.2</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow" >NexT.Mist</a></div>
 
 
         
