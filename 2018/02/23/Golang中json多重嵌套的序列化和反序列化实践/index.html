@@ -95,17 +95,17 @@
 
 
 
-<meta name="description" content="Golang中json多重嵌套的序列化和反序列化实践之前使用golang写项目接口中，需要把数据输出成json格式，捣鼓之后感觉有点不习惯，特别是多重嵌套下的json格式，所以记录下。 因为之前是使用的python,在python里面一切都是对象，只要序列化的数据格式没问题，只管往里面放数据。只需要一个json.dumps()，json.loads()的命令就搞定。 但在静态语言的Golang中却">
+<meta name="description" content="Golang中json多重嵌套的序列化和反序列化实践之前使用golang写项目接口中，需要把数据输出成json格式，捣鼓之后感觉有点不习惯，特别是多重嵌套下的json格式，所以记录下。 因为之前是使用的python,在python里面一切都是对象，只要序列化的数据格式没问题，只管往里面放数据。只需要一个json.dumps()，json.loads()的命令就搞定。">
 <meta name="keywords" content="Golang,json,序列化,反序列化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Golang中json多重嵌套的序列化和反序列化实践">
 <meta property="og:url" content="http://hondsome.cn/2018/02/23/Golang中json多重嵌套的序列化和反序列化实践/index.html">
 <meta property="og:site_name" content="Hondsome&#39;s Notes">
-<meta property="og:description" content="Golang中json多重嵌套的序列化和反序列化实践之前使用golang写项目接口中，需要把数据输出成json格式，捣鼓之后感觉有点不习惯，特别是多重嵌套下的json格式，所以记录下。 因为之前是使用的python,在python里面一切都是对象，只要序列化的数据格式没问题，只管往里面放数据。只需要一个json.dumps()，json.loads()的命令就搞定。 但在静态语言的Golang中却">
-<meta property="og:updated_time" content="2018-02-23T07:22:28.039Z">
+<meta property="og:description" content="Golang中json多重嵌套的序列化和反序列化实践之前使用golang写项目接口中，需要把数据输出成json格式，捣鼓之后感觉有点不习惯，特别是多重嵌套下的json格式，所以记录下。 因为之前是使用的python,在python里面一切都是对象，只要序列化的数据格式没问题，只管往里面放数据。只需要一个json.dumps()，json.loads()的命令就搞定。">
+<meta property="og:updated_time" content="2018-02-23T07:29:33.895Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Golang中json多重嵌套的序列化和反序列化实践">
-<meta name="twitter:description" content="Golang中json多重嵌套的序列化和反序列化实践之前使用golang写项目接口中，需要把数据输出成json格式，捣鼓之后感觉有点不习惯，特别是多重嵌套下的json格式，所以记录下。 因为之前是使用的python,在python里面一切都是对象，只要序列化的数据格式没问题，只管往里面放数据。只需要一个json.dumps()，json.loads()的命令就搞定。 但在静态语言的Golang中却">
+<meta name="twitter:description" content="Golang中json多重嵌套的序列化和反序列化实践之前使用golang写项目接口中，需要把数据输出成json格式，捣鼓之后感觉有点不习惯，特别是多重嵌套下的json格式，所以记录下。 因为之前是使用的python,在python里面一切都是对象，只要序列化的数据格式没问题，只管往里面放数据。只需要一个json.dumps()，json.loads()的命令就搞定。">
 
 
 
@@ -176,7 +176,7 @@
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">hondsome，博客</h1>
+        <h1 class="site-subtitle" itemprop="description"></h1>
       
   </div>
 
@@ -291,7 +291,7 @@
     <link itemprop="mainEntityOfPage" href="http://hondsome.cn/2018/02/23/Golang中json多重嵌套的序列化和反序列化实践/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hondsome">
+      <meta itemprop="name" content="刘隽阳">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -383,7 +383,7 @@
 
       
         <h1 id="Golang中json多重嵌套的序列化和反序列化实践"><a href="#Golang中json多重嵌套的序列化和反序列化实践" class="headerlink" title="Golang中json多重嵌套的序列化和反序列化实践"></a>Golang中json多重嵌套的序列化和反序列化实践</h1><p>之前使用golang写项目接口中，需要把数据输出成json格式，捣鼓之后感觉有点不习惯，特别是多重嵌套下的json格式，所以记录下。</p>
-<p>因为之前是使用的python,在python里面一切都是对象，只要序列化的数据格式没问题，只管往里面放数据。只需要一个<code>json.dumps()</code>，<code>json.loads()</code>的命令就搞定。</p>
+<p>因为之前是使用的python,在python里面一切都是对象，只要序列化的数据格式没问题，只管往里面放数据。只需要一个<code>json.dumps()</code>，<code>json.loads()</code>的命令就搞定。<br>  <a id="more"></a></p>
 <p>但在静态语言的Golang中却不是这么回事，各种标准，各种规范。如果是你要解析或者序列化复杂的json嵌套需要怎么办？需要一堆的struct。<br>话不多说，上代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">type Ad struct &#123;</div><div class="line">	Id           string `json:&quot;id&quot;`</div><div class="line">	App_name     string `json:&quot;app_name&quot;`</div><div class="line">&#125;</div><div class="line">type Wake_ad struct &#123;</div><div class="line">	Sw       string `json:&quot;sw&quot;`</div><div class="line">	Ad       Ad   `json:&quot;ad&quot;`</div><div class="line">&#125;</div><div class="line">func main() &#123;</div><div class="line">	var awakad Wake_ad</div><div class="line">	awakad.Sw  = &quot;1&quot;</div><div class="line">	awakad.Ad.Id = &quot;1005&quot;</div><div class="line">	awakad.Ad.App_name = &quot;hondsome&quot;</div><div class="line">	body, err := json.Marshal(awakad)  //序列化</div><div class="line">	if err != nil &#123;</div><div class="line">		panic(err.Error())</div><div class="line">	&#125;</div><div class="line">	println(string(body)) //需要string</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>你有发现后面多了个  `json:”**”` 的格式, 这是 Golang 结构体语法，外部变量是大写首字母，后面标记json的字段。</p>
 <p>这个是json序列化，同理，如果是需要反序列化接受到的json，那么就需要写相对应的struct。那要是复杂点的json嵌套格式，这就很伤~。<br>上代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line">import (</div><div class="line">	&quot;encoding/json&quot;</div><div class="line">	&quot;fmt&quot;</div><div class="line">)</div><div class="line">type Detail struct &#123;</div><div class="line">	Time string `json:&quot;time&quot;`</div><div class="line">	Ops  string `json:&quot;ops&quot;`</div><div class="line">&#125;</div><div class="line">type Ad struct &#123;</div><div class="line">	Id           string `json:&quot;id&quot;`</div><div class="line">	App_name     string `json:&quot;app_name&quot;`</div><div class="line">	Detail 		 []Detail `json:&quot;detail&quot;`</div><div class="line">&#125;</div><div class="line">type Wake_ad struct &#123;</div><div class="line">	Sw       string `json:&quot;sw&quot;`</div><div class="line">	Ad       []Ad   `json:&quot;ad&quot;`</div><div class="line">&#125;</div><div class="line">func main() &#123;</div><div class="line">	body:=`&#123;</div><div class="line">		&quot;sw&quot;:&quot;1&quot;,</div><div class="line">		&quot;ad&quot;:[&#123;</div><div class="line">			&quot;ad&quot;:&quot;1005&quot;,</div><div class="line">			&quot;app_name&quot;:&quot;honsome.cn&quot;,</div><div class="line">			&quot;detail&quot;:[&#123;</div><div class="line">					&quot;time&quot;:&quot;2016-06-01&quot;,</div><div class="line">					&quot;ops&quot;:&quot;download&quot;</div><div class="line">				  	&#125;]</div><div class="line">			&#125;]</div><div class="line">	&#125;`</div><div class="line">	var r Wake_ad</div><div class="line">	err := json.Unmarshal([]byte(body), &amp;r) //反序列化</div><div class="line">	if err != nil &#123;</div><div class="line">		fmt.Printf(&quot;err was %v&quot;, err)</div><div class="line">	&#125;</div><div class="line">	fmt.Println(r.Ad[0].App_name,r.Ad[0].Detail[0].Ops)</div><div class="line">	fmt.Println(r.Sw)</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -498,8 +498,8 @@
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
-               alt="Hondsome" />
-          <p class="site-author-name" itemprop="name">Hondsome</p>
+               alt="刘隽阳" />
+          <p class="site-author-name" itemprop="name">刘隽阳</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
            
@@ -608,7 +608,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Hondsome</span>
+  <span class="author" itemprop="copyrightHolder">刘隽阳</span>
 
   
 </div>
