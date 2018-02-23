@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hondsome " />
+  <meta name="keywords" content="Golang,json,序列化,反序列化" />
 
 
 
@@ -95,15 +95,17 @@
 
 
 
-<meta name="description" content="hondsome">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hondsome&#39;s Notes">
-<meta property="og:url" content="http://hondsome.cn/index.html">
+<meta name="description" content="Golang中json多重嵌套的序列化和反序列化实践之前使用golang写项目接口中，需要把数据输出成json格式，捣鼓之后感觉有点不习惯，特别是多重嵌套下的json格式，所以记录下。 因为之前是使用的python,在python里面一切都是对象，只要序列化的数据格式没问题，只管往里面放数据。只需要一个json.dumps()，json.loads()的命令就搞定。 但在静态语言的Golang中却">
+<meta name="keywords" content="Golang,json,序列化,反序列化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Golang中json多重嵌套的序列化和反序列化实践">
+<meta property="og:url" content="http://hondsome.cn/2018/02/23/Golang中json多重嵌套的序列化和反序列化实践/index.html">
 <meta property="og:site_name" content="Hondsome&#39;s Notes">
-<meta property="og:description" content="hondsome">
+<meta property="og:description" content="Golang中json多重嵌套的序列化和反序列化实践之前使用golang写项目接口中，需要把数据输出成json格式，捣鼓之后感觉有点不习惯，特别是多重嵌套下的json格式，所以记录下。 因为之前是使用的python,在python里面一切都是对象，只要序列化的数据格式没问题，只管往里面放数据。只需要一个json.dumps()，json.loads()的命令就搞定。 但在静态语言的Golang中却">
+<meta property="og:updated_time" content="2018-02-23T07:22:28.039Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hondsome&#39;s Notes">
-<meta name="twitter:description" content="hondsome">
+<meta name="twitter:title" content="Golang中json多重嵌套的序列化和反序列化实践">
+<meta name="twitter:description" content="Golang中json多重嵌套的序列化和反序列化实践之前使用golang写项目接口中，需要把数据输出成json格式，捣鼓之后感觉有点不习惯，特别是多重嵌套下的json格式，所以记录下。 因为之前是使用的python,在python里面一切都是对象，只要序列化的数据格式没问题，只管往里面放数据。只需要一个json.dumps()，json.loads()的命令就搞定。 但在静态语言的Golang中却">
 
 
 
@@ -133,14 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://hondsome.cn/"/>
+  <link rel="canonical" href="http://hondsome.cn/2018/02/23/Golang中json多重嵌套的序列化和反序列化实践/"/>
 
 
 
 
 
-  <title>Hondsome  - Hondsome's Noteshondsome
- - hondsome，博客</title>
+  <title>Golang中json多重嵌套的序列化和反序列化实践 | Hondsome's Notes</title>
   
 
 
@@ -159,8 +160,7 @@
     
   
 
-  <div class="container sidebar-position-right 
-  page-home">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -273,9 +273,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -305,9 +305,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/23/Golang中json多重嵌套的序列化和反序列化实践/" itemprop="url">Golang中json多重嵌套的序列化和反序列化实践</a></h2>
+          <h2 class="post-title" itemprop="name headline">Golang中json多重嵌套的序列化和反序列化实践</h2>
         
 
         <div class="post-meta">
@@ -361,6 +359,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
           
 
@@ -379,9 +382,7 @@
       
 
       
-        
-          
-            <h1 id="Golang中json多重嵌套的序列化和反序列化实践"><a href="#Golang中json多重嵌套的序列化和反序列化实践" class="headerlink" title="Golang中json多重嵌套的序列化和反序列化实践"></a>Golang中json多重嵌套的序列化和反序列化实践</h1><p>之前使用golang写项目接口中，需要把数据输出成json格式，捣鼓之后感觉有点不习惯，特别是多重嵌套下的json格式，所以记录下。</p>
+        <h1 id="Golang中json多重嵌套的序列化和反序列化实践"><a href="#Golang中json多重嵌套的序列化和反序列化实践" class="headerlink" title="Golang中json多重嵌套的序列化和反序列化实践"></a>Golang中json多重嵌套的序列化和反序列化实践</h1><p>之前使用golang写项目接口中，需要把数据输出成json格式，捣鼓之后感觉有点不习惯，特别是多重嵌套下的json格式，所以记录下。</p>
 <p>因为之前是使用的python,在python里面一切都是对象，只要序列化的数据格式没问题，只管往里面放数据。只需要一个<code>json.dumps()</code>，<code>json.loads()</code>的命令就搞定。</p>
 <p>但在静态语言的Golang中却不是这么回事，各种标准，各种规范。如果是你要解析或者序列化复杂的json嵌套需要怎么办？需要一堆的struct。<br>话不多说，上代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">type Ad struct &#123;</div><div class="line">	Id           string `json:&quot;id&quot;`</div><div class="line">	App_name     string `json:&quot;app_name&quot;`</div><div class="line">&#125;</div><div class="line">type Wake_ad struct &#123;</div><div class="line">	Sw       string `json:&quot;sw&quot;`</div><div class="line">	Ad       Ad   `json:&quot;ad&quot;`</div><div class="line">&#125;</div><div class="line">func main() &#123;</div><div class="line">	var awakad Wake_ad</div><div class="line">	awakad.Sw  = &quot;1&quot;</div><div class="line">	awakad.Ad.Id = &quot;1005&quot;</div><div class="line">	awakad.Ad.App_name = &quot;hondsome&quot;</div><div class="line">	body, err := json.Marshal(awakad)  //序列化</div><div class="line">	if err != nil &#123;</div><div class="line">		panic(err.Error())</div><div class="line">	&#125;</div><div class="line">	println(string(body)) //需要string</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>你有发现后面多了个  `json:”**”` 的格式, 这是 Golang 结构体语法，外部变量是大写首字母，后面标记json的字段。</p>
@@ -392,8 +393,6 @@
 <p>{map[sw:1 ad:[map[ad:1005 app_name:honsome.cn detail:[map[time:2016-06-01 ops:download]]]]]}</p>
 </blockquote>
 
-          
-        
       
     </div>
     
@@ -408,306 +407,38 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hondsome.cn/2018/02/23/我认为演讲的意义/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hondsome">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hondsome's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/23/我认为演讲的意义/" itemprop="url">我认为演讲的意义</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T10:26:44+08:00">
-                2018-02-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/思想和感悟/" itemprop="url" rel="index">
-                    <span itemprop="name">思想和感悟</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/Golang/" rel="tag"># Golang</a>
           
-
+            <a href="/tags/Json/" rel="tag"># Json</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <h1 id="我认为演讲的意义"><a href="#我认为演讲的意义" class="headerlink" title="我认为演讲的意义"></a>我认为演讲的意义</h1><p>  我今天是想讲：我认为的演讲的意义，也可以说是用处吧。演讲这个活动在我之前的认知中，是一个无用、无聊的东西。我之前两次演讲都是没有无意识的，或者说不是主动的，那是没有意义的演讲。在我准备第三次演讲的时候。当时去网上看演讲视频、找资料；同时在思考人类为什么需要演讲？演讲这个活动的意义是什么？在找到一个视频，是一个大学老师教大学生如何去进行演讲，当中听到一句话，这句话我觉得观点很新奇，把它给记下来了。这句话是：说而优则仕。关于这句话，我们应该会想另一句话：学而优则仕–这句话是古代读书人普遍的价值观，当时读书不是为了别的，而是能拿到一顶乌纱帽。在这面，这个大学老师把他改成了：说而优则仕。那是适合在大学生听的，我们是没什么机会了。后面我又看到另一个视频，我知道怎么改才适合我们了。<br>  改成：<strong>说而优则成。</strong><br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/23/我认为演讲的意义/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/23/我认为演讲的意义/" rel="next" title="我认为演讲的意义">
+                <i class="fa fa-chevron-left"></i> 我认为演讲的意义
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hondsome.cn/2017/08/29/ssh-多端电脑登录/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hondsome">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hondsome's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/29/ssh-多端电脑登录/" itemprop="url">ssh 多端电脑登录</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-29T22:00:17+08:00">
-                2017-08-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>#多台电脑免密登录你的远程服务器<br>1.首先你先安装ssh Uubuntu的是sudo apt-get install ssh ,centos 是 yum install ssh<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/29/ssh-多端电脑登录/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -717,156 +448,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hondsome.cn/2017/06/02/利用swap-file实现虚拟内存/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hondsome">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hondsome's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/02/利用swap-file实现虚拟内存/" itemprop="url">利用swap file实现虚拟内存</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-02T12:07:30+08:00">
-                2017-06-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          在linux创建一个交换文件作为虚拟内存
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/02/利用swap-file实现虚拟内存/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -874,6 +460,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -894,8 +484,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -972,6 +571,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Golang中json多重嵌套的序列化和反序列化实践"><span class="nav-number">1.</span> <span class="nav-text">Golang中json多重嵌套的序列化和反序列化实践</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1106,6 +721,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
 
   
 
