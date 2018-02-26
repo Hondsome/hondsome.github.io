@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Linux,ssh," />
+  <meta name="keywords" content="Supervisor,报错,采坑" />
 
 
 
@@ -95,17 +95,17 @@
 
 
 
-<meta name="description" content="#多台电脑免密登录你的远程服务器1.首先你先安装ssh Uubuntu的是sudo apt-get install ssh ,centos 是 yum install ssh">
-<meta name="keywords" content="Linux,ssh">
+<meta name="description" content="python安装supervisorSupervisor是一个C/S系统,它可以在类UNIX系统上控制系统进程，由python编写，提供了大量的功能来实现对进程的管理。 sudo pip install supervisor">
+<meta name="keywords" content="Supervisor,报错,采坑">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ssh 多端电脑登录">
-<meta property="og:url" content="http://hondsome.cn/2017/08/29/ssh-多端电脑登录/index.html">
+<meta property="og:title" content="supervisor 采坑笔记">
+<meta property="og:url" content="http://hondsome.cn/2018/02/26/supervisor-采坑笔记/index.html">
 <meta property="og:site_name" content="Hondsome&#39;s Notes">
-<meta property="og:description" content="#多台电脑免密登录你的远程服务器1.首先你先安装ssh Uubuntu的是sudo apt-get install ssh ,centos 是 yum install ssh">
-<meta property="og:updated_time" content="2017-09-01T14:41:37.143Z">
+<meta property="og:description" content="python安装supervisorSupervisor是一个C/S系统,它可以在类UNIX系统上控制系统进程，由python编写，提供了大量的功能来实现对进程的管理。 sudo pip install supervisor">
+<meta property="og:updated_time" content="2018-02-26T03:48:05.005Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ssh 多端电脑登录">
-<meta name="twitter:description" content="#多台电脑免密登录你的远程服务器1.首先你先安装ssh Uubuntu的是sudo apt-get install ssh ,centos 是 yum install ssh">
+<meta name="twitter:title" content="supervisor 采坑笔记">
+<meta name="twitter:description" content="python安装supervisorSupervisor是一个C/S系统,它可以在类UNIX系统上控制系统进程，由python编写，提供了大量的功能来实现对进程的管理。 sudo pip install supervisor">
 
 
 
@@ -135,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://hondsome.cn/2017/08/29/ssh-多端电脑登录/"/>
+  <link rel="canonical" href="http://hondsome.cn/2018/02/26/supervisor-采坑笔记/"/>
 
 
 
 
 
-  <title>ssh 多端电脑登录 | Hondsome's Notes</title>
+  <title>supervisor 采坑笔记 | Hondsome's Notes</title>
   
 
 
@@ -288,7 +288,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hondsome.cn/2017/08/29/ssh-多端电脑登录/">
+    <link itemprop="mainEntityOfPage" href="http://hondsome.cn/2018/02/26/supervisor-采坑笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="刘隽阳">
@@ -305,7 +305,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">ssh 多端电脑登录</h2>
+          <h2 class="post-title" itemprop="name headline">supervisor 采坑笔记</h2>
         
 
         <div class="post-meta">
@@ -317,8 +317,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-29T22:00:17+08:00">
-                2017-08-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T11:37:55+08:00">
+                2018-02-26
               </time>
             
 
@@ -382,9 +382,26 @@
       
 
       
-        <p>#多台电脑免密登录你的远程服务器<br>1.首先你先安装ssh Uubuntu的是sudo apt-get install ssh ,centos 是 yum install ssh<br><a id="more"></a><br>2.生成ssh所需的文件 ssh-keygen -t  rsa ；<br>之后在~/.ssh下会产生两个文件：<br>id_rsa #私钥<br>id_rsa.pub #公钥</p>
-<pre><code>免密登录就是在你的服务器上的~/.ssh/authorized_keys 文件下放入你现在的需要登录电脑的id_rsa.pub公钥， 可以存放多个。
-</code></pre><p> 之后只要重启ssh就好了<br> 重启命令是：/etc/rc.d/init.d/ssh restart 或者 sevice  ssh restart</p>
+        <h2 id="python安装supervisor"><a href="#python安装supervisor" class="headerlink" title="python安装supervisor"></a>python安装supervisor</h2><p>Supervisor是一个C/S系统,它可以在类UNIX系统上控制系统进程，由python编写，提供了大量的功能来实现对进程的管理。</p>
+<p><code>sudo pip install supervisor</code></p>
+<a id="more"></a>
+<p>安装环境<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">echo_supervisord_conf &gt; supervisor.conf # 生成 supervisor 默认配置文件</div><div class="line">vim supervisor.conf # 修改 supervisor 配置文件，添加 gunicorn 进程管理</div></pre></td></tr></table></figure></p>
+<h2 id="Supervisord和Supervisorctl"><a href="#Supervisord和Supervisorctl" class="headerlink" title="Supervisord和Supervisorctl"></a>Supervisord和Supervisorctl</h2><p>安装完Supervisor以后，系统中一般会找到两个工具（程序），一个是supervisord，另一个是supervisorctl，前者是主要的工作程序，后者则是一个管理工具，两者的关系类似apache和apachectl</p>
+<p>事实上，ctl的基本工作就是把人比较好理解的命令转译给正在工作的d，就像高级语言，最终会被转成cpu指令执行一样</p>
+<p>首先使用superviaord启动supervisor的主进程，然后通过supervisorctl向主进程发送一系列命令，让它听你的命令工作。</p>
+<p>首先，supervisord启动后，其自身就会蜕变成一个守护进程，然后，它会根据用户的配置文件，根据用户启动配置启动用户需要的进程，而用户配置的进程就变成了supervisord的子进程</p>
+<p>如果子进程发生了什么意外导致退出，supervisord进程会收到子进程挂掉的消息，然后重新启动子进程</p>
+<p>默认情况下，supervisor的意外表示进程的 exit_code != 0 || exit_code != 2</p>
+<p>这样就是守护-守护进程-的进程，由supervisor替管理员管理服务进程的生命周期</p>
+<h2 id="Supervisor进程配置"><a href="#Supervisor进程配置" class="headerlink" title="Supervisor进程配置"></a>Supervisor进程配置</h2><p>supervisor管理的进程，进程组信息，全部都写在一个ini格式的文件里就OK了。而且，我们管理supervisor的时候的可以在本地进行管理，也可以远程管理，而且supervisor提供了一个web界面，我们可以在web界面上监控，管理进程。 当然了，本地，远程和web管理的时候，需要调用supervisor的xml_rpc接口，这个也是后话。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[program:myapp]</div><div class="line">directory=/home/rsj217/rsj217/myproject ; 项目的文件夹路径</div><div class="line">command= gunicorn -w4 -b0.0.0.0:8000 myapp:app ; supervisor启动命令</div><div class="line">startsecs=0 ; 启动时间</div><div class="line">stopwaitsecs=0 ; 终止等待时间</div><div class="line">autostart=false ; 是否自动启动</div><div class="line">autorestart=false ; 是否自动重启</div><div class="line">stdout_logfile=/home/rsj217/rsj217/myproject/log/gunicorn.log ; log 日志 stderr_logfile=/home/rsj217/rsj217/myproject/log/gunicorn.err ; 错误日志</div></pre></td></tr></table></figure>
+<p>supervisor 使用的命令如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">supervisord -c receive.conf                             通过配置文件启动supervisor</div><div class="line">supervisorctl -c receive.conf status                    察看supervisor的状态</div><div class="line">supervisorctl -c receive.conf reload                    重新载入 配置文件</div><div class="line">supervisorctl -c receive.conf start [all]|[appname]     启动指定/所有 supervisor管理的程序进程</div><div class="line">supervisorctl -c supervisor.conf stop [all]|[appname]      关闭指定/所有 supervisor管理的程序进程</div></pre></td></tr></table></figure></p>
+<h2 id="期间遇到各种报错"><a href="#期间遇到各种报错" class="headerlink" title="期间遇到各种报错"></a>期间遇到各种报错</h2><p>错误1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Starting supervisor: Error: Another program is already listening on a port that one of our HTTP servers is configured to use.  Shut this program down first before starting supervisord.</div></pre></td></tr></table></figure></p>
+<p>解决办法：<br><code>unlink /tmp/supervisor.sock</code></p>
+<p>错误2：<br><code>Supervisorctl error: unix:///var/run/supervisord.sock refused connection?</code></p>
+<p>解决办法，说明需要开启supervisord。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">echo_supervisord_conf &gt; /etc/supervisord.conf //如果已经修改了supervisor.conf，这句就不要执行了</div><div class="line">sudo supervisord -c /etc/supervisord.conf</div><div class="line">sudo supervisorctl status</div></pre></td></tr></table></figure></p>
+<p>错误3：<br>以上还有一个隐患，因为以上的进行.pid 、.sock、.log文件都是方法tmp中。<br><strong>因为在/tmp中的文件会不定时被清理掉（比如重启主机），导致无法使用supervisorctl命令</strong><br>修改supervisor.conf文件中配置，修改到/var/run/及/var/log/目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">file=/var/run/supervisor.sock</div><div class="line">serverurl=unix:///var/run/supervisor.sock ;等等</div></pre></td></tr></table></figure></p>
+<p>*注意：修改supervisor.conf文件后，要执行<code>supervisorctl reload</code>，重新加载配置文件；</p>
 
       
     </div>
@@ -404,7 +421,7 @@
           
             <a href="/tags/Linux/" rel="tag"># Linux</a>
           
-            <a href="/tags/ssh/" rel="tag"># ssh</a>
+            <a href="/tags/Supervisor/" rel="tag"># Supervisor</a>
           
         </div>
       
@@ -417,8 +434,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/02/利用swap-file实现虚拟内存/" rel="next" title="利用swap file实现虚拟内存">
-                <i class="fa fa-chevron-left"></i> 利用swap file实现虚拟内存
+              <a href="/2018/02/26/如何提高数据结构和算法能力/" rel="next" title="如何提高数据结构和算法能力">
+                <i class="fa fa-chevron-left"></i> 如何提高数据结构和算法能力
               </a>
             
           </div>
@@ -426,10 +443,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/23/我认为演讲的意义/" rel="prev" title="我认为演讲的意义">
-                我认为演讲的意义 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -481,8 +494,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -559,6 +581,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#python安装supervisor"><span class="nav-number">1.</span> <span class="nav-text">python安装supervisor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Supervisord和Supervisorctl"><span class="nav-number">2.</span> <span class="nav-text">Supervisord和Supervisorctl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Supervisor进程配置"><span class="nav-number">3.</span> <span class="nav-text">Supervisor进程配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#期间遇到各种报错"><span class="nav-number">4.</span> <span class="nav-text">期间遇到各种报错</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
