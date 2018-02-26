@@ -288,6 +288,169 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hondsome.cn/2018/02/26/Golang-中sort包的探索/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="刘隽阳">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hondsome's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/26/Golang-中sort包的探索/" itemprop="url">Golang 中sort包的探索</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T10:54:35+08:00">
+                2018-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Golang/" itemprop="url" rel="index">
+                    <span itemprop="name">Golang</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Golang-中sort包的探索"><a href="#Golang-中sort包的探索" class="headerlink" title="Golang 中sort包的探索"></a>Golang 中sort包的探索</h1><p>Golang sort包提供两个模块。一个是sort排序，一个是search搜索。</p>
+<h2 id="sort排序"><a href="#sort排序" class="headerlink" title="sort排序"></a>sort排序</h2><p>sort排序方法内置有插入排序、快排和堆排序。和其他语言中一样，这三种方式都是不公开的。他们只在sort包内部使用，所以使用golang sort包进行排序时无需考虑哪种排序方式。sort模块会根据实际情况选择使用合适的排序算法。</p>
+<p>sort.sort()排序定义了三个方法。</p>
+<ul>
+<li>待排序元素个数 n ；</li>
+<li>第 i 和第 j 个元素的比较函数 cmp ；</li>
+<li>第 i 和 第 j 个元素的交换 swap ；<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">type Interface interface &#123;</div><div class="line">	//Len 集合中元素的数量。</div><div class="line">	Len() int</div><div class="line">	//Less 报告具有索引i的元素是否应该在具有索引j的元素之前排序。</div><div class="line">	Less(i, j int) bool</div><div class="line">	// Swap 交换索引i和索引j元素</div><div class="line">	Swap(i, j int)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>任何实现了 sort.Interface 的类型，均可使用该包中的方法进行排序。并且能够使用整数来索引</p>
+<p>golang 提供了int、float64和string数组和切片的排序方法，sort.Ints()、sort.Float64s()、sort.Strings()函数，默认是从小到大的排序。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">package main  </div><div class="line">  </div><div class="line">import (  </div><div class="line">    &quot;fmt&quot;  </div><div class="line">    &quot;sort&quot;  </div><div class="line">)  </div><div class="line">  </div><div class="line">//定义interface&#123;&#125;,并实现sort.Interface接口的三个方法  </div><div class="line">type IntSlice []int  </div><div class="line">  </div><div class="line">func (c IntSlice) Len() int &#123;  </div><div class="line">    return len(c)  </div><div class="line">&#125;  </div><div class="line">func (c IntSlice) Swap(i, j int) &#123;  </div><div class="line">    c[i], c[j] = c[j], c[i]  </div><div class="line">&#125;  </div><div class="line">func (c IntSlice) Less(i, j int) bool &#123;  </div><div class="line">    return c[i] &lt; c[j]  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">func main() &#123;  </div><div class="line">    a := IntSlice&#123;1, 3, 5, 7, 2&#125;  </div><div class="line">    b := []float64&#123;1.1, 2.3, 5.3, 3.4&#125;  </div><div class="line">    c := []int&#123;1, 3, 5, 4, 2&#125;  </div><div class="line">    fmt.Println(sort.IsSorted(a)) //false  </div><div class="line">    if !sort.IsSorted(a) &#123;  </div><div class="line">        sort.Sort(a)   </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    if !sort.Float64sAreSorted(b) &#123;  </div><div class="line">        sort.Float64s(b)  </div><div class="line">    &#125;  </div><div class="line">    if !sort.IntsAreSorted(c) &#123;  </div><div class="line">        sort.Ints(c)  </div><div class="line">    &#125;  </div><div class="line">    fmt.Println(a)//[1 2 3 5 7]  </div><div class="line">    fmt.Println(b)//[1.1 2.3 3.4 5.3]  </div><div class="line">    fmt.Println(c)// [1 2 3 4 5]  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>sort.Sort 并不保证排序的稳定性。如果有需要, 可以使用 sort.Stable<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sort.Stable(a)</div></pre></td></tr></table></figure></p>
+<p>同时可以使用 sort.Reverse 进行逆序排序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sort.Sort(sort.Reverse(a))</div></pre></td></tr></table></figure></p>
+<h2 id="Search搜索"><a href="#Search搜索" class="headerlink" title="Search搜索"></a>Search搜索</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">func Search(n int, f func(int) bool) int</div></pre></td></tr></table></figure>
+<p>Search 常用于在一个可排序、可索引的数据结构中寻找索引为i的值，一般是切片和数组。上函数中，n 通常是为已排序的int数组或切片，func是作为一个筛选的条件函数。下文中有具体的例子。</p>
+<p>Search()使用二分法进行查找指定切片[0:n],并返回能够使func(i)=Ture的最小i值。但是在切片中无法找到func(i) = true时（此时切片元素都不能使func()函数返回true）,<strong>Search()方法会返回n(而不是返回-1)</strong></p>
+<p>为了查找某个值，而不是某一个范围值时。如果slice以升序排序，则func中应该使用&gt;=；如果是降序，则使用&lt;=，如下例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">func main() &#123;  </div><div class="line">    a := []int&#123;1, 2, 3, 4, 5&#125;  </div><div class="line">    b := sort.Search(len(a), func(i int) bool &#123; return a[i] &gt;= 30 &#125;)  </div><div class="line">    fmt.Println(b)　　　　　　　//5，查找不到，返回a slice的长度５，而不是-1  </div><div class="line">    c := sort.Search(len(a), func(i int) bool &#123; return a[i] &lt;= 3 &#125;)  </div><div class="line">    fmt.Println(c)                             //0，利用二分法进行查找，返回符合条件的最左边数值的index，即为０  </div><div class="line">    d := sort.Search(len(a), func(i int) bool &#123; return a[i] == 3 &#125;)  </div><div class="line">    fmt.Println(d)                          //2　　　  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>seaerch中也实现了常用的类型搜索<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SearchInts(a []int, x int) int</div><div class="line">SearchFloat64s(a []float64, x float64) int </div><div class="line">SearchStrings(a []string, x string) int</div></pre></td></tr></table></figure></p>
+<p>其中SearchInts实现是这样的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">func SearchInts(a []int, x int) int &#123;</div><div class="line">	return Search(len(a), func(i int) bool &#123; return a[i] &gt;= x &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>//SearchInts 在ints切片中搜索x并返回索引如Search函数所述. 返回可以插入x值的索引位置，如果x不存在，返回数组a的长度切片必须以升序排列。<br>其他的同理。<strong>其中需要注意的是，以上三种search查找方法，其对应的slice必须按照升序进行排序，否则会出现奇怪的结果</strong><br>举个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">func main() &#123;  </div><div class="line">    a := []string&#123;&quot;a&quot;, &quot;c&quot;&#125;  </div><div class="line">    i := sort.SearchStrings(a, &quot;b&quot;)  </div><div class="line">    fmt.Println(i) //1  </div><div class="line">    b := []string&#123;&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;&#125;  </div><div class="line">    i = sort.SearchStrings(b, &quot;b&quot;)  </div><div class="line">    fmt.Println(i) //1  </div><div class="line">    c := []string&#123;&quot;d&quot;, &quot;c&quot;&#125;  </div><div class="line">    i = sort.SearchStrings(c, &quot;b&quot;)  </div><div class="line">    fmt.Println(i) //0  </div><div class="line">    d := []string&#123;&quot;c&quot;, &quot;d&quot;, &quot;b&quot;&#125;  </div><div class="line">    i = sort.SearchStrings(d, &quot;b&quot;)  </div><div class="line">    fmt.Println(i) //0，由于d不是以升序方式排列，所以出现奇怪的结果，这可以根据SearchStrings的定义进行解释．见下方．  </div><div class="line">&#125;  </div><div class="line">func SearchStrings(a []string, x string) int &#123;  </div><div class="line">return Search(len(a), func(i int) bool &#123; return a[i] &gt;= x &#125;)  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>sort实现源代码代码传送门：<br>golang sort package: <a href="https://golang.org/src/sort" target="_blank" rel="external">https://golang.org/src/sort</a></p>
+<p>参考文章：<br><a href="https://www.jianshu.com/p/6e52bad56e06" target="_blank" rel="external">https://www.jianshu.com/p/6e52bad56e06</a><br><a href="http://blog.csdn.net/mrs_len/article/details/54018977" target="_blank" rel="external">http://blog.csdn.net/mrs_len/article/details/54018977</a><br><a href="https://studygolang.com/articles/3360" target="_blank" rel="external">https://studygolang.com/articles/3360</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hondsome.cn/2018/02/23/TCP-IP模型是什么/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1054,7 +1217,7 @@
             
               <a href="/archives/ || archive">
             
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1076,7 +1239,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
